@@ -1,17 +1,23 @@
 package br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.Controller;
 
+import br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.domain.gerente.Gerente;
+import br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.domain.gerente.GerenteService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-@RestController("/gerente")
+@RestController
+@RequestMapping("/gerente")
 public class GerenteController {
 
+    @Autowired
+    GerenteService gerenteService;
+
     @PostMapping("/cadastro")
-    public ResponseEntity cadastroGerente(){
+    public ResponseEntity cadastroGerente(@RequestBody String nome, String senha){
+        Gerente gerente = Gerente.builder().nome(nome).senha(senha).build();
+        gerenteService.cadastroGerente(gerente);
 
         return new ResponseEntity(HttpStatus.CREATED);
     }

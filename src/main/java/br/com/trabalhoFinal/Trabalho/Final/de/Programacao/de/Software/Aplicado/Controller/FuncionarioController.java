@@ -1,15 +1,24 @@
 package br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.Controller;
 
+import br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.domain.funcionario.Funcionario;
+import br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.domain.funcionario.FuncionarioRepository;
+import br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.domain.funcionario.FuncionarioService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-@RestController("/funcionario")
+@RestController
+@RequestMapping("/funcionario")
 public class FuncionarioController {
+
+    @Autowired
+    FuncionarioService funcionarioService;
+
     @PostMapping("/cadastro")
-    public ResponseEntity cadastroFuncionario(){
+    public ResponseEntity cadastroFuncionario(@RequestBody String nome, String senha){
+        Funcionario funcionario = Funcionario.builder().nome(nome).senha(senha).build();
+        funcionarioService.cadastroFuncionario(funcionario);
 
         return new ResponseEntity(HttpStatus.CREATED);
     }
