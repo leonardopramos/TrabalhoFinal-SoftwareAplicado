@@ -12,21 +12,18 @@ public class ReembolsoService {
     @Autowired
     ReembolsoRepository reembolsoRepository;
 
-    public boolean valida(Reembolso reembolso){
+    public void valida(Reembolso reembolso){
         if(reembolso.getValor()< 0)throw new RuntimeException();;
-
-        if(reembolso.getEstado() == null) throw new RuntimeException();
 
         if(reembolso.getMotivo() == null) throw new RuntimeException();
 
         if(reembolso.getDataReembolso() == null)throw new RuntimeException();
-
-        return true;
     }
 
     public void cadastraReembolso(Reembolso reembolso){
-        if(valida(reembolso)) reembolsoRepository.save(reembolso);
-        else throw new RuntimeException();
+        valida(reembolso);
+
+        reembolsoRepository.save(reembolso);
     }
 
     public ArrayList<Reembolso> listaTodosProcessosFuncionario(){

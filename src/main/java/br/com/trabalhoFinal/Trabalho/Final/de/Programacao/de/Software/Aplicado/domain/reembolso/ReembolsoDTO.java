@@ -2,5 +2,5 @@ package br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.
 
 import java.time.LocalDate;
 
-public record ReembolsoDTO(Double valor, Motivo motivo , LocalDate dataReembolso,Integer funcionario) {
+public record ReembolsoDTO(Double valor, Motivo motivo , LocalDate dataReembolso,Long funcionario) {
 }

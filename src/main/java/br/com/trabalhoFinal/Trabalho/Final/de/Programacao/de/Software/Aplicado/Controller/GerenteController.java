@@ -39,6 +39,8 @@ public class GerenteController {
     @GetMapping("/gerar-relatorio")
     public ResponseEntity gerarRelatorio(){
 
+
+
         return ResponseEntity.ok().build();
     }
 }

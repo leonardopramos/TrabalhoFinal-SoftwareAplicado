@@ -43,7 +43,7 @@ public class FuncionarioController {
                 .motivo(reembolsoDTO.motivo())
                 .estado(Estado.PENDENTE)
                 .dataReembolso(reembolsoDTO.dataReembolso())
-                .funcionario(null) //FAZER AQUI!!!!!
+                .funcionario(funcionarioService.findByid(reembolsoDTO.funcionario()))
                 .build();
 
         reembolsoService.cadastraReembolso(reembolso);
