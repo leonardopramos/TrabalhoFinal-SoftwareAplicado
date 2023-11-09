@@ -10,7 +10,7 @@ public class GerenteService {
     GerenteRepository GerenteRepository;
 
     public void cadastroGerente(Gerente gerente){
-        if(gerente.nome != null && gerente.senha !=null){
+        if(gerente.getNome() != null || gerente.getSenha() !=null){
             GerenteRepository.save(gerente);
         } else throw new RuntimeException();
     }

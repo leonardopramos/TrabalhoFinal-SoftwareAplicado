@@ -1,6 +1,7 @@
 package br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.Controller;
 
 import br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.domain.gerente.Gerente;
+import br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.domain.gerente.GerenteDTO;
 import br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.domain.gerente.GerenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,8 +16,8 @@ public class GerenteController {
     GerenteService gerenteService;
 
     @PostMapping("/cadastro")
-    public ResponseEntity cadastroGerente(@RequestBody String nome, String senha){
-        Gerente gerente = Gerente.builder().nome(nome).senha(senha).build();
+    public ResponseEntity cadastroGerente(@RequestBody GerenteDTO gerenteDTO){
+        Gerente gerente = Gerente.builder().nome(gerenteDTO.nome()).senha(gerenteDTO.senha()).build();
         gerenteService.cadastroGerente(gerente);
 
         return new ResponseEntity(HttpStatus.CREATED);
@@ -28,13 +29,14 @@ public class GerenteController {
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping("/validar-reembolso")
-    public ResponseEntity validaReembolso(){
+    @PutMapping("/validar-reembolso/{$id}")
+    public ResponseEntity validaReembolso(@PathVariable Long id){
+
 
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/validar-reembolso")
+    @GetMapping("/gerar-relatorio")
     public ResponseEntity gerarRelatorio(){
 
         return ResponseEntity.ok().build();

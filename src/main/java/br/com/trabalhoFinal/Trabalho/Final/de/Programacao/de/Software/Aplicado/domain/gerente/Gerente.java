@@ -13,17 +13,9 @@ import lombok.*;
 @Setter
 @Builder
 public class Gerente {
-    String nome;
-    String senha;
+    private String nome;
+    private String senha;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
 }
