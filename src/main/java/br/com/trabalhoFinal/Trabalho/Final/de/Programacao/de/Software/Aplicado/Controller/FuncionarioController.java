@@ -45,7 +45,6 @@ public class FuncionarioController {
                 .dataReembolso(reembolsoDTO.dataReembolso())
                 .funcionario(funcionarioService.findByid(reembolsoDTO.funcionario()))
                 .build();
-
         reembolsoService.cadastraReembolso(reembolso);
         return new ResponseEntity(HttpStatus.CREATED);
     }

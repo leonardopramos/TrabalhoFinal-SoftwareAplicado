@@ -10,9 +10,9 @@ public class FuncionarioService {
     FuncionarioRepository funcionarioRepository;
 
     public void valida(Funcionario funcionario){
-        if(funcionario.nome != null) throw new RuntimeException();
+        if(funcionario.nome == null) throw new RuntimeException();
 
-        if(funcionario.senha !=null) throw new RuntimeException();
+        if(funcionario.senha ==null) throw new RuntimeException();
     }
 
     public void cadastroFuncionario(Funcionario funcionario){
@@ -27,9 +27,7 @@ public class FuncionarioService {
 
     public Funcionario findByid(Long id) {
         funcionarioExiste(id);
-
         Funcionario funcionario = funcionarioRepository.findById(id).get();
-
         return funcionario;
     }
 }
