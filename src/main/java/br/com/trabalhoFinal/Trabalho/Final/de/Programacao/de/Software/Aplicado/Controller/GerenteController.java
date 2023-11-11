@@ -3,10 +3,15 @@ package br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.
 import br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.domain.gerente.Gerente;
 import br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.domain.gerente.GerenteDTO;
 import br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.domain.gerente.GerenteService;
+import br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.domain.reembolso.Reembolso;
+import br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.domain.reembolso.ReembolsoRepository;
+import br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.domain.reembolso.ReembolsoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
 
 @RestController
 @RequestMapping("/gerente")
@@ -14,6 +19,8 @@ public class GerenteController {
 
     @Autowired
     GerenteService gerenteService;
+    @Autowired
+    ReembolsoService reembolsoService;
 
     @PostMapping("/cadastro")
     public ResponseEntity cadastroGerente(@RequestBody GerenteDTO gerenteDTO){
@@ -29,18 +36,27 @@ public class GerenteController {
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping("/validar-reembolso/{$id}")
-    public ResponseEntity validaReembolso(@PathVariable Long id){
-
+    @PatchMapping("/reembolso/aprovar/{id}")
+    public ResponseEntity aprovaReembolso(@PathVariable Long id){
+        reembolsoService.aprovaReembolso(id);
 
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/gerar-relatorio")
-    public ResponseEntity gerarRelatorio(){
-
-
+    @PatchMapping("/reembolso/reprovar/{id}")
+    public ResponseEntity reprovaReembolso(@PathVariable Long id){
+        reembolsoService.reprovaReembolso(id);
 
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/reembolso/relatorio")
+    public ResponseEntity gerarRelatorio(){
+        LocalDate inicio = LocalDate.of(2023, 11, 10);
+        LocalDate fim = LocalDate.of(2023, 11, 20);
+
+        var relatorio = reembolsoService.relatorio(inicio,fim);
+
+        return ResponseEntity.ok().body(relatorio);
     }
 }

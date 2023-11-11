@@ -13,15 +13,21 @@ import java.time.LocalDate;
 @Setter
 @Builder
 public class Reembolso {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private Double valor;
-    private Motivo motivo;
-    private Estado estado;
+
     private LocalDate dataReembolso;
+
+    @Enumerated(EnumType.STRING)
+    private Motivo motivo;
+
+    @Enumerated(value = EnumType.STRING)
+    private Estado estado;
 
     @ManyToOne
     @JoinColumn(name = "id_funcionario")
     private Funcionario funcionario;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 }

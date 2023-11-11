@@ -49,10 +49,11 @@ public class FuncionarioController {
         return new ResponseEntity(HttpStatus.CREATED);
     }
 
-    @GetMapping("/reembolso")
-    public ResponseEntity visualizaReembolsos(){
-        var reembolsos = reembolsoService.listaTodosProcessosFuncionario();
+    @GetMapping("/reembolso/{id}")
+    public ResponseEntity visualizaReembolsos(@PathVariable Long id){
+        funcionarioService.funcionarioExiste(id);
+        var listaDosReembolsos = reembolsoService.listaTodosReembolsosFuncionario(id);
 
-        return ResponseEntity.ok().body(reembolsos);
+        return ResponseEntity.ok().body(listaDosReembolsos);
     }
 }
