@@ -1,5 +1,6 @@
 package br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.Controller;
 
+import br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.domain.gerente.DatasDTO;
 import br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.domain.gerente.Gerente;
 import br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.domain.gerente.GerenteDTO;
 import br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.domain.gerente.GerenteService;
@@ -51,10 +52,10 @@ public class GerenteController {
     }
 
     @GetMapping("/reembolso/relatorio")
-    public ResponseEntity gerarRelatorio(){
-        LocalDate inicio = LocalDate.of(2023, 11, 10);
-        LocalDate fim = LocalDate.of(2023, 11, 20);
-
+    public ResponseEntity gerarRelatorio(@RequestBody DatasDTO datas){
+        LocalDate inicio = datas.inicio();
+        LocalDate fim = datas.fim();
+       s
         var relatorio = reembolsoService.relatorio(inicio,fim);
 
         return ResponseEntity.ok().body(relatorio);
