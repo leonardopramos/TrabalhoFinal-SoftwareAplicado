@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/funcionario")
 public class FuncionarioController {
@@ -31,9 +33,14 @@ public class FuncionarioController {
     }
 
     @GetMapping("/login")
-    public ResponseEntity loginFuncionario(){
-
-        return ResponseEntity.ok().build();
+    public ResponseEntity loginFuncionario(@RequestBody Funcionario f){
+        List<Funcionario> list = funcionarioService.findAll();
+        for(Funcionario func : list){
+            if(func.getNome().equals(f.getNome()) && func.getSenha().equals(f.getSenha())){
+                return ResponseEntity.ok().build();
+            }
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @PostMapping("/reembolso")

@@ -3,6 +3,8 @@ package br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class FuncionarioService {
 
@@ -29,5 +31,12 @@ public class FuncionarioService {
         funcionarioExiste(id);
         Funcionario funcionario = funcionarioRepository.findById(id).get();
         return funcionario;
+    }
+    public boolean loginById(Long id) {
+        funcionarioExiste(id);
+        return true;
+    }
+    public List<Funcionario> findAll(){
+        return funcionarioRepository.findAll();
     }
 }

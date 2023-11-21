@@ -1,5 +1,6 @@
 package br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.Controller;
 
+import br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.domain.funcionario.Funcionario;
 import br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.domain.gerente.DatasDTO;
 import br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.domain.gerente.Gerente;
 import br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.domain.gerente.GerenteDTO;
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @RestController
 @RequestMapping("/gerente")
@@ -32,9 +34,14 @@ public class GerenteController {
     }
 
     @GetMapping("/login")
-    public ResponseEntity loginGerente(){
-
-        return ResponseEntity.ok().build();
+    public ResponseEntity loginGerente(@RequestBody Gerente g){
+        List<Gerente> list = gerenteService.findAll();
+        for(Gerente gen : list){
+            if(gen.getNome().equals(g.getNome()) && gen.getSenha().equals(g.getSenha())){
+                return ResponseEntity.ok().build();
+            }
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @PatchMapping("/reembolso/aprovar/{id}")
@@ -55,7 +62,7 @@ public class GerenteController {
     public ResponseEntity gerarRelatorio(@RequestBody DatasDTO datas){
         LocalDate inicio = datas.inicio();
         LocalDate fim = datas.fim();
-       s
+
         var relatorio = reembolsoService.relatorio(inicio,fim);
 
         return ResponseEntity.ok().body(relatorio);
