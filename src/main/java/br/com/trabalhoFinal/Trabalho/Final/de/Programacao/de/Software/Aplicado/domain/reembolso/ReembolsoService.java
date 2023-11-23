@@ -1,5 +1,7 @@
 package br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.domain.reembolso;
 
+import br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.Infra.Exception.ErroReembolsoInexistente;
+import br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.Infra.Exception.ErroValidacaoCadastro;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +18,11 @@ public class ReembolsoService {
     ReembolsoRepository reembolsoRepository;
 
     public void valida(Reembolso reembolso){
-        if(reembolso.getValor()< 0)throw new RuntimeException();;
+        if(reembolso.getValor()< 0)throw new ErroValidacaoCadastro("Adicione um valor ao reembolso");
 
-        if(reembolso.getMotivo() == null) throw new RuntimeException();
+        if(reembolso.getMotivo() == null) throw new ErroValidacaoCadastro("Adicione um motivo ao reembolso");
 
-        if(reembolso.getDataReembolso() == null)throw new RuntimeException();
+        if(reembolso.getDataReembolso() == null)throw new ErroValidacaoCadastro("Adicione uma data ao reembolso");
     }
 
     public void cadastraReembolso(Reembolso reembolso){
@@ -53,7 +55,7 @@ public class ReembolsoService {
             Reembolso reembolso = reembolsoEncontrado.get();
             reembolso.setEstado(Estado.APROVADO);
             reembolsoRepository.save(reembolso);
-        } else throw new RuntimeException();
+        } throw new ErroReembolsoInexistente("Adicione um valor ao reembolso");
     }
 
     public void reprovaReembolso(Long id){
@@ -63,10 +65,13 @@ public class ReembolsoService {
             Reembolso reembolso = reembolsoEncontrado.get();
             reembolso.setEstado(Estado.REPROVADO);
             reembolsoRepository.save(reembolso);
-        } else throw new RuntimeException();
+        } throw new ErroReembolsoInexistente("Adicione um valor ao reembolso");
     }
 
     public DadosRelatorioDTO relatorio(LocalDate inicio, LocalDate fim){
+        if(inicio == null) throw new RuntimeException("data de inicio nao informada");
+        if(fim == null) throw new RuntimeException("data de fim nao informada");
+
         List<Reembolso> reembolsos = reembolsoRepository.findAll();
 
         List<Double> valoresAprovados = new ArrayList<>();

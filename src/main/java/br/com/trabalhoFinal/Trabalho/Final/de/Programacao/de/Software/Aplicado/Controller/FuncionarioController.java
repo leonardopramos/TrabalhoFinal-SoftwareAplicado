@@ -1,5 +1,6 @@
 package br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.Controller;
 
+import br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.Infra.Exception.ErroDeAutenticacao;
 import br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.domain.funcionario.Funcionario;
 import br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.domain.funcionario.FuncionarioDTO;
 import br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.domain.funcionario.FuncionarioService;
@@ -33,14 +34,12 @@ public class FuncionarioController {
     }
 
     @GetMapping("/login")
-    public ResponseEntity loginFuncionario(@RequestBody Funcionario f){
-        List<Funcionario> list = funcionarioService.findAll();
-        for(Funcionario func : list){
-            if(func.getNome().equals(f.getNome()) && func.getSenha().equals(f.getSenha())){
-                return ResponseEntity.ok().build();
-            }
-        }
-        return ResponseEntity.notFound().build();
+    public ResponseEntity loginFuncionario(@RequestBody Funcionario funcionario){
+        Funcionario funcionarioEncontrado = funcionarioService.validaFuncionario(funcionario);
+
+        if (funcionarioEncontrado==null)throw new ErroDeAutenticacao("Funcionario nao cadastrado");
+
+        return ResponseEntity.ok().body(funcionarioEncontrado);
     }
 
     @PostMapping("/reembolso")
@@ -58,7 +57,7 @@ public class FuncionarioController {
 
     @GetMapping("/reembolso/{id}")
     public ResponseEntity visualizaReembolsos(@PathVariable Long id){
-        funcionarioService.funcionarioExiste(id);
+        funcionarioService.funcionarioExistePeloId(id);
         var listaDosReembolsos = reembolsoService.listaTodosReembolsosFuncionario(id);
 
         return ResponseEntity.ok().body(listaDosReembolsos);
