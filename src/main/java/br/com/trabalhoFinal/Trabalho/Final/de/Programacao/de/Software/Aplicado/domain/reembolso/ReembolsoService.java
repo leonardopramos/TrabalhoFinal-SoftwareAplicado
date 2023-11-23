@@ -55,7 +55,7 @@ public class ReembolsoService {
             Reembolso reembolso = reembolsoEncontrado.get();
             reembolso.setEstado(Estado.APROVADO);
             reembolsoRepository.save(reembolso);
-        } throw new ErroReembolsoInexistente("Adicione um valor ao reembolso");
+        } else throw new ErroReembolsoInexistente("Reembolso nao encontrado");
     }
 
     public void reprovaReembolso(Long id){
@@ -65,7 +65,7 @@ public class ReembolsoService {
             Reembolso reembolso = reembolsoEncontrado.get();
             reembolso.setEstado(Estado.REPROVADO);
             reembolsoRepository.save(reembolso);
-        } throw new ErroReembolsoInexistente("Adicione um valor ao reembolso");
+        } else throw new ErroReembolsoInexistente("Reembolso nao encontrado");
     }
 
     public DadosRelatorioDTO relatorio(LocalDate inicio, LocalDate fim){
