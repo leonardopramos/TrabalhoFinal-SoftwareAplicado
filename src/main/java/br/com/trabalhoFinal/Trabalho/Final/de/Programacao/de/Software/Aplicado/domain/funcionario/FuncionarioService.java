@@ -31,7 +31,7 @@ public class FuncionarioService {
     public Funcionario validaFuncionario(Funcionario funcionario){
         valida(funcionario);
 
-        List<Funcionario> list = findAll();
+        List<Funcionario> list = funcionarioRepository.findAll();
         for(Funcionario func : list){
             if(func.getNome().equals(funcionario.getNome()) && func.getSenha().equals(funcionario.getSenha())){
                 return func;
@@ -46,11 +46,5 @@ public class FuncionarioService {
         Funcionario funcionario = funcionarioRepository.findById(id).get();
         return funcionario;
     }
-    public boolean loginById(Long id) {
-        funcionarioExistePeloId(id);
-        return true;
-    }
-    public List<Funcionario> findAll(){
-        return funcionarioRepository.findAll();
-    }
+
 }

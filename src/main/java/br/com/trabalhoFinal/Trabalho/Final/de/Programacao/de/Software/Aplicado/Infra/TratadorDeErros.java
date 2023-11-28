@@ -1,7 +1,8 @@
 package br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.Infra;
 
 import br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.Infra.Exception.ErroDeAutenticacao;
-import br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.Infra.Exception.RegraNegocioException;
+import br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.Infra.Exception.ErroReembolsoInexistente;
+import br.com.trabalhoFinal.Trabalho.Final.de.Programacao.de.Software.Aplicado.Infra.Exception.ErroValidacaoCadastro;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,8 +34,13 @@ public class TratadorDeErros {
         return ResponseEntity.badRequest().body(exception.getLocalizedMessage());
     }
 
-    @ExceptionHandler(RegraNegocioException.class)
-    public ResponseEntity tratarErroDeRegraDeNegocio(RegraNegocioException exception){
+    @ExceptionHandler(ErroReembolsoInexistente.class)
+    public ResponseEntity tratarErroReembolsoInexistente(ErroReembolsoInexistente exception){
+        return ResponseEntity.badRequest().body(exception.getLocalizedMessage());
+    }
+
+    @ExceptionHandler(ErroValidacaoCadastro.class)
+    public ResponseEntity tratarErroValidacaoCadastro(ErroValidacaoCadastro exception){
         return ResponseEntity.badRequest().body(exception.getLocalizedMessage());
     }
 
