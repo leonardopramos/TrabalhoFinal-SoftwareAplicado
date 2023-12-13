@@ -1,6 +1,6 @@
 # API Sistema de Reembolso de Despesas
 
-Este projeto consiste em uma API desenvolvida em Java, utilizando Spring Boot, Maven, MySQL, Lombok, Flyway, Spring Data JPA e Hibernate. O sistema tem como objetivo gerenciar solicitações de reembolso de despesas, permitindo que um gerente as aprove ou rejeite. Funciona permitindo que os funcionários da empresa cadastrem solicitações de reembolso de despesas de viagem ou outras, incluindo descrição, valor e data da solicitação.
+Este projeto consiste em uma API desenvolvida em Java, utilizando Spring Boot, Maven, MySQL, Lombok, Flyway, Spring Data JPA e Hibernate. O sistema tem como objetivo gerenciar solicitações de reembolso de despesas, permitindo que um gerente as aprove ou rejeite. Os funcionários da empresa podem cadastrar solicitações de reembolso de despesas de viagem ou outras, incluindo descrição, valor e data da solicitação.
 
 ## Funcionalidades
 
@@ -13,10 +13,9 @@ Este projeto consiste em uma API desenvolvida em Java, utilizando Spring Boot, M
 Este projeto foi desenvolvido durante o 4º semestre do curso de Sistemas de Informação na Pontifícia Universidade Católica do Rio Grande do Sul (PUCRS), na disciplina de Programação de Software Aplicado. O curso tinha como objetivo fornecer conhecimentos práticos em desenvolvimento de software.
 
 ## Membros da Equipe
-
-- **Leonardo Preczevski Ramos**
-- **Gustavo Cañellas Aveline Rocha**
-- **Arthur Battistel Ilha**
+- <a href= https://www.linkedin.com/in/leonardo-preczevski-733501215/>**Leonardo Preczevski Ramos**<a/>
+- <a href = https://www.linkedin.com/in/gustavo-ca%C3%B1ellas-aveline-rocha-073747265/>**Gustavo Cañellas Aveline Rocha**<a/>
+- <a href = https://www.linkedin.com/in/arthur-ilha/>**Arthur Battistel Ilha**<a/>
 
 ## Como Executar
 
@@ -49,9 +48,9 @@ This project was developed during the 4th semester of the Information Systems co
 
 ## Team Members
 
-- **Leonardo Preczevski Ramos**
-- **Gustavo Cañellas Aveline Rocha**
-- **Arthur Battistel Ilha**
+- <a href= https://www.linkedin.com/in/leonardo-preczevski-733501215/>**Leonardo Preczevski Ramos**<a/>
+- <a href = https://www.linkedin.com/in/gustavo-ca%C3%B1ellas-aveline-rocha-073747265/>**Gustavo Cañellas Aveline Rocha**<a/>
+- <a href = https://www.linkedin.com/in/arthur-ilha/>**Arthur Battistel Ilha**<a/>
 
 ## How to Run
 
