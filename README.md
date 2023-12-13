@@ -29,8 +29,6 @@ Este projeto foi desenvolvido durante o 4º semestre do curso de Sistemas de Inf
 
 Esta API simplifica o processo de reembolso, permitindo que os funcionários submetam solicitações e os gerentes as aprovem ou rejeitem de maneira eficiente. Foi desenvolvida para atender aos requisitos da disciplina "Programação de Software Aplicado". Em caso de dúvidas ou sugestões, sinta-se à vontade para entrar em contato.
 
-**Desenvolvedor:** Leonardo Preczevski Ramos, Gustavo Cañellas Aveline Rocha, Arthur Battistel Ilha
-
 
 # Expense Reimbursement System API (English Version)
 
